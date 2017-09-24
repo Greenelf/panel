@@ -20,8 +20,10 @@
         "name": "Alenoosh Baghoomian",
         "email": "hope2end@gmail.com"
         },
+	{
 	"name": "Alex Chesnui",
 	"email": "alexandr.cctv@gmail.com"
+	}
     ],
     "require": {
         "php": ">=5.4.0",        
