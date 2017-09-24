@@ -1,5 +1,5 @@
 {
-    "name": "greenelf/laravel-panel",
+    "name": "greenelf/laravel-admin-panel",
     "description": "Admin panel for Laravel applications",
     "keywords": ["LaravelPanel","Laravel", "Panel", "Crud", "Admin Panel","CMS","administrator", "admin", "backend"],
     "license": "MIT",
