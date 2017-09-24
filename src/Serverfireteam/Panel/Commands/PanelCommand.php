@@ -41,7 +41,7 @@ class PanelCommand extends Command {
 
             $this->call('vendor:publish');
 
-            $this->call('migrate', array('--path' => 'vendor/serverfireteam/panel/src/database/migrations'));
+        $this->call('migrate', array('--path' => 'vendor/greenelf/laravel-admin-panel/src/database/migrations'));
 
             $this->call('db:seed', array('--class' => '\Serverfireteam\Panel\LinkSeeder'));
 	}
