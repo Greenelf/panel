@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/serverfireteam/panel/v/stable.svg)](https://packagist.org/packages/serverfireteam/panel)
 [![License](https://poser.pugx.org/serverfireteam/panel/license.svg)](https://packagist.org/packages/serverfireteam/panel)
 
-**LaravelPanel** is a modern Laravel Admin package. 
+**LaravelPanel** is a modern Laravel Admin package. **Add auto search controllers**
 
 This package provides an easily configurable admin panel for Laravel applications with a CRUD system, UI and more.
 
