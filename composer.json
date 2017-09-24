@@ -1,5 +1,5 @@
 {
-    "name": "serverfireteam/panel",
+    "name": "greenelf/laravel-panel",
     "description": "Admin panel for Laravel applications",
     "keywords": ["LaravelPanel","Laravel", "Panel", "Crud", "Admin Panel","CMS","administrator", "admin", "backend"],
     "license": "MIT",
@@ -19,7 +19,9 @@
         {
         "name": "Alenoosh Baghoomian",
         "email": "hope2end@gmail.com"
-        }
+        },
+	"name": "Alex Chesnui",
+	"email": "alexandr.cctv@gmail.com"
     ],
     "require": {
         "php": ">=5.4.0",        
