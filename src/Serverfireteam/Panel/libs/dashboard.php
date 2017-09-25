@@ -12,18 +12,21 @@ class dashboard
 
     /**
      * Dashboard items cache
+     *
      * @var array
      */
     public static $dashboardItems;
 
     /**
-     * Either retrieve the dashboard items from cache or from the config/DB if they were not yet cached
+     * Either retrieve the dashboard items from cache or from the config/DB if
+     * they were not yet cached
+     *
      * @return array
      */
-    public static function getItems ()
+    public static function getItems()
     {
         if (!self::$dashboardItems) {
-            self::$dashboardItems = \App::call(self::class . '@create');
+            self::$dashboardItems = \App::call(self::class.'@create');
         }
 
         return self::$dashboardItems;
@@ -31,16 +34,22 @@ class dashboard
 
     /**
      * Determine whether to show the given entity type in the panel
+     *
      * @param $link
+     *
      * @return bool
      */
-    private function showLink ($link)
+    private function showLink($link)
     {
-        if (!$link['show_menu']) return false;
+        if (!$link['show_menu']) {
+            return false;
+        }
 
         $user = \Auth::guard('panel')->user();
 
-        return $user->hasRole('super') || $user->hasPermission('/' . $link['url'] . '/all');
+        return $user->hasRole('super') || $user->hasPermission(
+                '/'.$link['url'].'/all'
+            );
     }
 
     /**
@@ -52,31 +61,37 @@ class dashboard
      *
      * @return array
      */
-    public function create (AppHelper $appHelper, LinkRepository $linkRepository)
+    public function create(AppHelper $appHelper, LinkRepository $linkRepository)
     {
         // @TODO cache
 
         return $linkRepository->all()
+            ->filter(
+                function ($link) {
+                    return $this->showLink($link);
+                }
+            )
+            ->map(
+                function ($link) use ($appHelper) {
 
-            ->filter(function ($link) {
-                return $this->showLink($link);
-            })
+                    $modelName = $link['url'];
 
-            ->map(function ($link) use ($appHelper) {
+                    $model = $appHelper->getModel($modelName);
+                    if (class_exists($model)) {
+                        $count = $model::count();
+                    } else {
+                        $count = '';
+                    }
 
-                $modelName = $link['url'];
-
-                $model = $appHelper->getModel($modelName);
-
-                return [
-                    'modelName'   => $modelName,
-                    'title'       => $link['display'],
-                    'count'       => $model::count(),
-                    'showListUrl' => 'panel/' . $modelName . '/all',
-                    'addUrl'      => 'panel/' . $modelName . '/edit',
-                ];
-            })
-
+                    return [
+                        'modelName' => $modelName,
+                        'title' => $link['display'],
+                        'count' => $count,
+                        'showListUrl' => 'panel/'.$modelName.'/all',
+                        'addUrl' => 'panel/'.$modelName.'/edit',
+                    ];
+                }
+            )
             ->toArray();
     }
 }
